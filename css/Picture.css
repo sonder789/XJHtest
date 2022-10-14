@@ -1,0 +1,35 @@
+.huadong{
+	width: 95%;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+.Title1{
+	font-size: 16px;
+	margin: 15px auto;
+}
+.huadong ul li{
+	list-style-type: none;
+	width: 137px;
+	height: 300px;
+	float: left;
+transition: all 0.6s;
+	
+}
+img:hover{
+	transform: scale(1.2);
+}
+.wenzi{
+	margin: 0 auto ;
+}
+.wenzi p{
+	line-height:20px;
+	text-indent: 24px;
+	margin: 20px auto;
+}
+h2{
+	font-family: "微软雅黑";
+	font-size: 30px;
+	
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我在哪里</title>
+<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/other.css" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=fbXf9j0aPH4EwxPBaixZ8Ll2rGwMbFe8"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		<link rel="icon" href="img/icon.png" sizes="32x32">
+		<title>用户注册</title>
+	</head>
+
+	<!-- fbXf9j0aPH4EwxPBaixZ8Ll2rGwMbFe8  要替换为自己的APIkey  获取方式请到 百度地图开放平台 -->
+
+<body>
+
+	<nav>
+			<div class="list">
+				<ul>
+					<li><a href="index.html">主页 / Home</a></li>
+					<li><a href="Picture.html">照片 / Picture</a></li>
+					<li><a href="news.html">新闻 / News</a></li>
+					<li><a href="register.html">注册 / register</a></li>
+					<li><a href="map.html">地图 / Map</a></li>
+					<li><a href="Team.html">小肖同学 / xiao</a></li>
+				</ul>
+			</div>
+		</nav>
+<form name="companyForm" class="companysel">
+<!--  <span>选择公司位置：</span>-->
+  <select name="companyPick" OnChange="companyReveal()">
+    <option value="0"> 学院 · 小肖同学</option>
+<!--    <option value="2">  </option>-->
+  </select>
+  <span>地址：</span>
+  <input name="companyField" type="text" id="suggestId"  value="学院" style="overflow:auto" disabled>
+</form>
+
+<div id="l-map" style="width: 100%; height: 400px"></div> 
+<footer>
+			<ul>
+				<li><a href="index.html">主页 / Home</a></li>
+				<li><a href="Picture.html">照片 / Picture</a></li>
+				<li><a href="news.html">新闻 / News</a></li>
+			</ul>
+			<ul>
+					<li><a href="register.html">注册 / register</a></li>
+					<li><a href="map.html">地图 / Map</a></li>
+					<li><a href="Team.html">小肖同学 / xiao</a></li>
+			</ul>
+		</footer>
+</body>
+<script type="text/javascript">
+	// 百度地图API功能
+	function G(id) {
+		return document.getElementById(id);
+	}
+	var map = new BMap.Map("l-map");
+	map.centerAndZoom("北京",12);    // 初始化地图,设置城市和地图级别。
+	map.enableScrollWheelZoom();   	//启用滚轮放大缩小，默认禁用
+	map.enableContinuousZoom();    	//启用地图惯性拖拽，默认禁用
+	var local = new BMap.LocalSearch(map, {
+		renderOptions:{map: map}
+	});
+	var msearch = document.getElementById("suggestId").value;
+	local.search(msearch);  //百度地图关键字检索 默认加载一次
+	var company = new Array(); 
+	company[0] = "学院";			//这里写入每个选项对应的说明文字
+	//company[2] = "51 Changi Business Park Central 2#06-09 The Signature, Singapore 486066";	   
+	function companyReveal() {
+	  var companyindex = document.companyForm.companyPick.selectedIndex;//取得当前下拉菜单选定项目的序号
+	  helpmsg = company[companyindex];//根据序号取得当前选项的说明
+	  document.companyForm.companyField.value = helpmsg//将说明写进文框
+	  var msearch = document.getElementById("suggestId").value;
+	  local.search(msearch);  //百度地图关键字检索 触发加载
+	}	
+</script>
+</html>
+
